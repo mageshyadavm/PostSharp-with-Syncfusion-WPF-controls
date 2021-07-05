@@ -1,0 +1,31 @@
+﻿<Window x:Class="SyncfusionPostSharp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SyncfusionPostSharp" xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"
+          xmlns:i="http://schemas.microsoft.com/xaml/behaviors" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="WindowLoaded" Name="window">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding GridWindowLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.DataContext>
+        <local:EmployeeViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        
+        <Syncfusion:SfDataGrid ItemsSource="{Binding Employees}" AllowEditing="True" ColumnSizer="Star" Loaded="SfDataGrid_Loaded">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding GridWindowLoadedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+                     
+        </Syncfusion:SfDataGrid>
+        <local:CustomGrid CustomText="{Binding ElementName=window, Path=Title}" local:CustomGrid.SecurityId="1234" />
+ 
+    </StackPanel>
+</Window>
